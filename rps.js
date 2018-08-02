@@ -53,13 +53,18 @@ let computerScore = 0;
 function checkWinner(){
     if((playerScore == 5)) {
         alert('you are the weiner!');
+        return true;
+    } else if ((computerScore == 5)) {
+        alert('soz, you lose!');
+        return true;
+    }
+}
+
+function updateScoresWhenFinishGame() {
+    if (checkWinner() == true) {
         playerScore = 0;
         computerScore = 0;
         document.getElementById('scoreComp').textContent = 0;
-    } else if ((computerScore == 5)) {
-        alert('soz, you lose!');
-        playerScore = 0;
-        computerScore = 0;
         document.getElementById('scorePlayer').textContent = 0;
     }
 }
@@ -89,6 +94,7 @@ function incrementScore(compPoint, playerPoint){
         playRound(playerSelection, computerSelection);
         incrementScore('paper', 'scissor');
         checkWinner();
+        updateScoresWhenFinishGame();
     });
 
     btnPaper.addEventListener("click", () => {
@@ -97,6 +103,7 @@ function incrementScore(compPoint, playerPoint){
         playRound(playerSelection, computerSelection);
         incrementScore('scissor','rock')
         checkWinner();
+        updateScoresWhenFinishGame();
     });
 
     btnScissor.addEventListener('click', () => {
@@ -105,4 +112,5 @@ function incrementScore(compPoint, playerPoint){
         playRound(playerSelection, computerSelection);
         incrementScore('rock', 'paper')
         checkWinner();
+        updateScoresWhenFinishGame();
     });
